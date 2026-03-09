@@ -3,31 +3,22 @@ public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
 
-        String original = "madam";
+        String original = "A man a plan a canal Panama";
 
 
-        boolean isPalindrome = isPalindromeRecursive(original, 0, original.length() - 1);
+        String normalized = original.replaceAll("\\s+", "").toLowerCase();
 
-        if (isPalindrome) {
-            System.out.println("The string \"" + original + "\" is a Palindrome.");
+
+        String reversed = "";
+        for (int i = normalized.length() - 1; i >= 0; i--) {
+            reversed += normalized.charAt(i);
+        }
+
+
+        if (normalized.equals(reversed)) {
+            System.out.println("The string \"" + original + "\" is a Palindrome (ignoring case and spaces).");
         } else {
-            System.out.println("The string \"" + original + "\" is NOT a Palindrome.");
+            System.out.println("The string \"" + original + "\" is NOT a Palindrome (ignoring case and spaces).");
         }
-    }
-
-
-    private static boolean isPalindromeRecursive(String str, int start, int end) {
-
-        if (start >= end) {
-            return true;
-        }
-
-
-        if (str.charAt(start) != str.charAt(end)) {
-            return false;
-        }
-
-
-        return isPalindromeRecursive(str, start + 1, end - 1);
     }
 }
