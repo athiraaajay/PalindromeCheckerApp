@@ -1,24 +1,27 @@
-public class PalindromeCheckerApp {
-
+import java.util.Scanner;
+public class PalindromeCheckerAPP {
     public static void main(String[] args) {
-
-
-        String original = "A man a plan a canal Panama";
-
-
-        String normalized = original.replaceAll("\\s+", "").toLowerCase();
-
-
-        String reversed = "";
-        for (int i = normalized.length() - 1; i >= 0; i--) {
-            reversed += normalized.charAt(i);
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Input : ");
+        String input = scanner.nextLine();
+        PalindromeService service = new PalindromeService();
+        boolean isPalindrome = service.checkPalindrome(input);
+        System.out.println("Is Palindrome? : " + isPalindrome);
+        scanner.close();
+    }
+}
+class PalindromeService {
+    public boolean checkPalindrome(String input) {
+        if (input == null) return false;
+        int start = 0;
+        int end = input.length() - 1;
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
         }
-
-
-        if (normalized.equals(reversed)) {
-            System.out.println("The string \"" + original + "\" is a Palindrome (ignoring case and spaces).");
-        } else {
-            System.out.println("The string \"" + original + "\" is NOT a Palindrome (ignoring case and spaces).");
-        }
+        return true;
     }
 }
